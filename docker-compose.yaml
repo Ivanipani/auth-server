@@ -1,12 +1,12 @@
 version: "3.8"
 services:
   postgres:
-    image: ivanipani1/relational-db:postgres
-    # ports:
-    #   - "5432:5432"
+    image: ivanipani1/postgres
+    ports:
+      - "5432:5432"
     restart: always
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      test: [ "CMD-SHELL", "pg_isready -U dabah-user -d dabah-db" ]
       interval: 3s
       timeout: 5s
       retries: 5
@@ -14,17 +14,17 @@ services:
   dev: &dev
     build:
       context: .
-      dockerfile: dev.Dockerfile
+      dockerfile: docker/dev.Dockerfile
     ports:
       - "8080:8080"
     volumes:
       - .:/workarea
     environment:
       - KC_DB_URL=jdbc:postgresql://postgres:5432/postgres
-      - KC_DB_USERNAME=postgres
-      - KC_DB_PASSWORD=my_postgres_password
+      - KC_DB_USERNAME=dabah-user
+      - KC_DB_PASSWORD=dabah-password
       - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=change_me
+      - KEYCLOAK_ADMIN_PASSWORD=admin
     command: start-dev
     depends_on:
       postgres:
@@ -33,14 +33,14 @@ services:
   deploy:
     build:
       context: .
-      dockerfile: deploy.Dockerfile
+      dockerfile: docker/deploy.Dockerfile
     ports:
       - "8443:8443"
     environment:
       - KC_DB_URL=jdbc:postgresql://postgres:5432/postgres
-      - KC_DB_USERNAME=postgres
-      - KC_DB_PASSWORD=my_postgres_password
+      - KC_DB_USERNAME=dabah-user
+      - KC_DB_PASSWORD=dabah-password
       - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=change_me
+      - KEYCLOAK_ADMIN_PASSWORD=admin
     command: start
 
