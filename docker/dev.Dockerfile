@@ -1,9 +1,6 @@
 FROM quay.io/keycloak/keycloak:24.0
 
-# Enable health and metrics support
-ENV KC_HEALTH_ENABLED=true
-ENV KC_METRICS_ENABLED=true
-
+ENV KC_DB=postgres
 WORKDIR /opt/keycloak
 
 RUN /opt/keycloak/bin/kc.sh build
