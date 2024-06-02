@@ -23,7 +23,7 @@ services:
       - "8080:8080"
     volumes:
       - .:/workarea
-      # - ./themes/:/opt/keycloak/themes
+      - ./themes/:/opt/keycloak/themes
     environment:
       - KC_DB_URL=jdbc:postgresql://postgres:5432/auth
       - ENV KC_DB=postgres
