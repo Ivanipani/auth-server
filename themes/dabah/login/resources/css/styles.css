@@ -6,16 +6,25 @@
     font-family: futura-pt, sans-serif; 
 }
 
+
 .card-pf {
     display: flex;
     flex-direction: column; 
-    min-width: 35vw;
+    min-width: 500px;
+    /* max-width: 35vw; */
     margin: auto;
     position: relative;
     border-top: unset;
     border-radius: 20px;
     padding-top: 50px !important;
     z-index: 1000;
+}
+
+@media (max-width: 500px) {
+    .card-pf {
+        width: 90vw;
+        min-width: initial;
+    }
 }
 
 .login-pf-page {
