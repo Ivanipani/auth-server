@@ -3,13 +3,13 @@
     background-attachment: fixed;
     background-repeat: repeat;
     background-size: 2000px 2000px;
+    font-family: futura-pt, sans-serif; 
 }
 
 .card-pf {
     display: flex;
     flex-direction: column; 
-    min-width: 150px;
-    max-width: 80%;
+    min-width: 35vw;
     margin: auto;
     position: relative;
     border-top: unset;
@@ -19,7 +19,6 @@
 }
 
 .login-pf-page {
-    width: 1000px;
     display: flex;
     justify-content: center;
     align-items: center;

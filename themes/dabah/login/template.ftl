@@ -46,6 +46,9 @@
             );
         </script>
     </#if>
+    <style>
+      @import url("https://use.typekit.net/tpm0rpg.css");
+    </style> 
 </head>
 
 <body class="${properties.kcBodyClass!}">
