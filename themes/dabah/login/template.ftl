@@ -55,7 +55,7 @@
     <div id="content-area">
 <div class="${properties.kcLoginClass!}">
     <div class="${properties.kcFormCardClass!}">
-        <img src="${url.resourcesPath}/img/dots-alone.png" id="logotop"/>
+        <img src="${url.resourcesPath}/img/dots_circle.png" id="logotop"/>
         <header class="${properties.kcFormHeaderClass!}">
             <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
                 <div class="${properties.kcLocaleMainClass!}" id="kc-locale">

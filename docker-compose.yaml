@@ -5,6 +5,8 @@ services:
     ports:
       - "5432:5432"
     restart: always
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: remy
       POSTGRES_PASSWORD: password
@@ -20,7 +22,7 @@ services:
       context: .
       dockerfile: docker/dev.Dockerfile
     ports:
-      - "8080:8080"
+      - "30031:8080"
     volumes:
       - .:/workarea
       - ./themes/:/opt/keycloak/themes
@@ -32,26 +34,6 @@ services:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
     command: start-dev --spi-theme-static-max-age=-1 --spi-theme-cache-themes=false --spi-theme-cache-templates=false --verbose
-    depends_on:
-      postgres:
-        condition: service_healthy
-
-  deploy:
-    build:
-      context: .
-      dockerfile: docker/deploy.Dockerfile
-    ports:
-      - "8080:8080"
-    environment:
-      - KC_DB_URL=jdbc:postgresql://postgres:5432/auth
-      - ENV KC_DB=postgres
-      - KC_DB_USERNAME=remy
-      - KC_DB_PASSWORD=password
-      - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=admin
-    command: start-dev
-    # command: start --http-enabled=true --optimized
-    # containerCmdArgs: ["start", "--proxy", "edge", "--hostname=auth.dev.app.dabahrecipes.com", "--http-enabled=true", "--hostname-debug=true", "--optimized"]
     depends_on:
       postgres:
         condition: service_healthy
