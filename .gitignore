@@ -2,3 +2,4 @@ META-INF
 theme
 postgres-data
 *.jar
+.DS_Store
