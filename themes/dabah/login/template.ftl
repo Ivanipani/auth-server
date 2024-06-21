@@ -78,9 +78,6 @@
         <#if !(auth?has_content && auth.showUsername() && !auth.showResetCredentials())>
             <#if displayRequiredFields>
                 <div class="${properties.kcContentWrapperClass!}">
-                    <div class="${properties.kcLabelWrapperClass!} subtitle">
-                        <span class="subtitle"><span class="required">*</span> ${msg("requiredFields")}</span>
-                    </div>
                     <div class="col-md-10">
                         <h1 id="kc-page-title"><#nested "header"></h1>
                     </div>
